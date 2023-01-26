@@ -3,19 +3,20 @@ import { Route, Routes } from "react-router-dom";
 import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
 import { pages } from "./config/pages";
+import NotFound from "./pages/NotFound";
 
 function App() {
   const [count, setCount] = useState(0);
 
   return (
-    <div className="h-screen w-screen flex flex-col">
-      <header className="w-full flex flex-col">
+    <div className="flex h-screen w-screen flex-col">
+      <header className="flex w-full flex-col">
         <img
           className="h-32 object-contain"
           src="/assets/images/logga2.jpg"
           alt="Kongagården logo"
         />
-        <div className="w-full h-12">
+        <div className="h-12 w-full">
           <Navbar navbarItems={pages} />
         </div>
       </header>
@@ -25,10 +26,10 @@ function App() {
             <Route path={page.path} element={page.element} />
           ))}
 
-          <Route path="*" />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </main>
-      <footer className="w-full h-30">
+      <footer className="h-30 w-full">
         <Footer />
       </footer>
     </div>
