@@ -32,7 +32,7 @@ const ContactPage: React.FC = () => {
             lng: 13.2069821,
           }}
           zoom={10}
-          onLoad={() => console.log("onload map")}
+          onLoad={() => console.log("onload maps")}
           onUnmount={() => console.log("unmount map")}
         >
           {/* <InfoWindow
