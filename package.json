@@ -1,16 +1,20 @@
 {
   "name": "kongagarden-react",
+  "homepage": "https://linneairbladh.github.io",
   "private": true,
   "version": "0.0.0",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
     "test": "jest",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "predeploy": "tsc && vite build",
+    "deploy": "gh-pages -d build"
   },
   "dependencies": {
     "@react-google-maps/api": "^2.17.1",
     "eslint": "^8.32.0",
+    "gh-pages": "^5.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-facebook": "^9.0.12",

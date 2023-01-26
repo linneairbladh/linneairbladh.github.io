@@ -1,11 +1,10 @@
-name: Build GH Pages
+name: Deploy GP
 
 on: push
 
 jobs:
-  super-lint:
-    name: Lint code base
-    runs-on: ubuntu-latest
+  build-test-deply:
+       runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
