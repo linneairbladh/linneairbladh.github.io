@@ -9,7 +9,7 @@ function App() {
   const [count, setCount] = useState(0);
 
   return (
-    <div className="flex h-screen w-screen flex-col">
+    <div className="flex h-full w-screen flex-col">
       <header className="flex w-full flex-col">
         <img
           className="h-32 object-contain"

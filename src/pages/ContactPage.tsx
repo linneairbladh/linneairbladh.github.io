@@ -1,5 +1,5 @@
 import Page from "../components/Page";
-import { address, emailAddress } from "../config/contactInfo";
+import { address, emailAddress, phoneNumber } from "../config/contactInfo";
 import {
   GoogleMap,
   InfoWindow,
@@ -75,6 +75,12 @@ const ContactPage: React.FC = () => {
           >
             {emailAddress}
           </a>
+        </p>
+
+        <p className="text-center font-semibold">Telefon:</p>
+
+        <p className="font-normal text-center text-black">
+          {phoneNumber.marie}
         </p>
 
         <p className="font text-center font-semibold">
