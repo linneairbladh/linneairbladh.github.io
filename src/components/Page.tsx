@@ -15,7 +15,7 @@ const Page: React.FC<PageProps> = (props) => {
             <img
               className="h-15 w-1/5 shadow-md"
               src={image}
-              alt="bilder från Konga"
+              alt="bilder från Kongagarden"
             />
           ))}
         </div>
