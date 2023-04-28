@@ -5,4 +5,5 @@ import mdPlugin, { Mode } from "vite-plugin-markdown";
 export default defineConfig({
   plugins: [react(), mdPlugin({ mode: [Mode.REACT] })],
   envDir: "./env/",
+  base: "",
 });
