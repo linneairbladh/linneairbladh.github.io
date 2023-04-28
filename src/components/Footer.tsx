@@ -9,7 +9,7 @@ const Footer: React.FC<FooterProps> = (props) => {
 
   return (
     <div className="fixed bottom-0 h-30 w-full bg-color-primary flex flex-row justify-center items-center gap-x-4 text-sm text-white">
-      <span>© Kongagården Rehab, 2022.</span>
+      <span>© Kongagården Rehab, 2023.</span>
       <span>|</span>
 
       <a className="hover:underline" href={"mailto:" + emailAddress}>
