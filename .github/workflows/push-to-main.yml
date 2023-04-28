@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  super-lint:
+  build-and-deploy:
     name: Deploy to pages
     runs-on: ubuntu-latest
     steps:
