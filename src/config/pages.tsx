@@ -18,17 +18,17 @@ export const pages: Page[] = [
   },
   {
     title: "NUR",
-    path: "/nur",
+    path: "/",
     element: <NurPage />,
   },
   {
     title: "Kontakt",
-    path: "/kontakt",
+    path: "/",
     element: <ContactPage />,
   },
   {
     title: "Konceptet",
-    path: "/koncept",
+    path: "/",
     element: <ConceptPage />,
   },
 ];
