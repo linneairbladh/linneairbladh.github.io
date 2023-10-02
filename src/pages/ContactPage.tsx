@@ -1,72 +1,38 @@
 import Page from "../components/Page";
 import { address, emailAddress, phoneNumber } from "../config/contactInfo";
-import {
-  GoogleMap,
-  InfoWindow,
-  LoadScript,
-  MarkerF,
-  OverlayView,
-  OverlayViewF,
-  useJsApiLoader,
-} from "@react-google-maps/api";
-import { memo, useCallback, useMemo, useState } from "react";
-
-const containerStyle = {
-  width: "100%",
-  height: "100%",
-};
+import { GoogleMap, MarkerF, useJsApiLoader } from "@react-google-maps/api";
+import { useRef } from "react";
+import sheepIcon from "./sheep-icon-512-23819.png";
 
 const ContactPage: React.FC = () => {
-  // const { isLoaded } = useJsApiLoader({
-  //   id: "google-map-script",
-  //   googleMapsApiKey: import.meta.env.VITE_GOOGLE_MAPS_API_KEY,
-  // });
+  const { isLoaded } = useJsApiLoader({
+    id: "maps-script",
+    googleMapsApiKey: import.meta.env.VITE_GOOGLE_MAPS_API_KEY,
+  });
 
-  const googleMap = useMemo(
-    () => (
-      <LoadScript googleMapsApiKey={import.meta.env.VITE_GOOGLE_MAPS_API_KEY}>
-        <GoogleMap
-          mapContainerStyle={containerStyle}
-          center={{
-            lat: 55.97776,
-            lng: 13.2069821,
-          }}
-          zoom={10}
-          onLoad={() => console.log("onload maps")}
-          onUnmount={() => console.log("unmount map")}
-        >
-          {/* <InfoWindow
-            onLoad={() => console.log("window loaded")}
-            position={{
-              lat: 55.97776,
-              lng: 13.2069821,
-            }}
-          >
-            <div>
-              <h1>Här finns vi!</h1>
-              <p>Kongagården</p>
-            </div>
-          </InfoWindow> */}
-          <MarkerF
-            onLoad={() => console.log("marker loaded")}
-            position={{
-              lat: 55.97776,
-              lng: 13.2069821,
-            }}
-            title="Kongagården"
-            visible={true}
-          />
+  const mapRef = useRef<google.maps.Map | null>(null);
 
-          <></>
-        </GoogleMap>
-      </LoadScript>
-    ),
-    [containerStyle]
-  );
+  const onLoad = (map: google.maps.Map): void => {
+    mapRef.current = map;
+  };
+
+  const onUnMount = (): void => {
+    mapRef.current = null;
+  };
+
+  const position = {
+    lat: 55.97776,
+    lng: 13.2069821,
+  };
+
+  const options = {
+    disableDefaultUI: true,
+    zoomControl: true,
+  };
 
   return (
     <Page attributes={{ title: "Kontakt", images: [] }}>
-      <div className="markdown h-full w-full flex-col py-5">
+      <div className="markdown h-full w-full flex-row py-5">
         <p className="text-center font-semibold">Email:</p>
         <p className="text-center">
           <a
@@ -92,7 +58,34 @@ const ContactPage: React.FC = () => {
         </p>
       </div>
 
-      <div className="flex h-2/3 w-full">{googleMap}</div>
+      {!isLoaded ? (
+        <p>Loading Google Maps..</p>
+      ) : (
+        <div className="flex h-2/3 w-full p-5">
+          <GoogleMap
+            mapContainerStyle={{
+              width: "100%",
+              height: "50vh",
+            }}
+            options={options as google.maps.MapOptions}
+            center={position}
+            zoom={12}
+            onLoad={onLoad}
+            onUnmount={onUnMount}
+          >
+            <MarkerF
+              position={position}
+              // Icon for fun
+              // icon={{
+              //   url: sheepIcon,
+              //   origin: new window.google.maps.Point(0, 0),
+              //   anchor: new window.google.maps.Point(15, 15),
+              //   scaledSize: new window.google.maps.Size(30, 30),
+              // }}
+            />
+          </GoogleMap>
+        </div>
+      )}
     </Page>
   );
 };
